@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
 
     body {
       font-family: 'Share Tech Mono', monospace;
-      background-color: #020a02;
+      background-color: #06000f;
       color: #00ff9d;
       display: flex;
       flex-direction: column;
@@ -22,8 +21,12 @@
     }
 
     h1 {
-      color: #00ff9d;
-      text-shadow: 0 0 10px #00ff9d, 0 0 25px #00ff9d, 0 0 50px #00ff9d;
+      color: #81eb31;
+      text-shadow: 
+        0 0 15px #81eb31, 
+        0 0 30px #81eb31,
+        0 0 45px #ff00e6,
+        0 0 70px #ff00e6;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 2px;
       margin-bottom: 40px;
@@ -31,42 +34,40 @@
     }
 
     @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.3;
-      }
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.3; }
     }
 
     input {
       background: transparent;
-      border: 2px solid #00ff9d;
+      border: 2px solid #81eb31;
       border-radius: 8px;
-      color: #00ff9d;
+      color: #81eb31;
       font-size: 18px;
       padding: 10px 20px;
       outline: none;
-      width: 250px;
+      width: 260px;
       text-align: center;
       letter-spacing: 1px;
-      box-shadow: 0 0 10px #00ff9d;
+      box-shadow: 0 0 10px #81eb31;
       transition: 0.3s;
     }
 
     input:focus {
-      box-shadow: 0 0 20px #00ff9d, 0 0 40px #00ff9d;
+      border-color: #f515a2;
+      color: #f515a2;
+      box-shadow: 0 0 20px #ff00e6, 0 0 40px #81eb31;
     }
 
     input::placeholder {
-      color: #00ff9d90;
+      color: #81eb31;
     }
 
     button {
       margin-top: 20px;
       background-color: transparent;
-      border: 2px solid #00ff9d;
-      color: #00ff9d;
+      border: 2px solid #f515a2;
+      color: #f515a2;
       font-size: 18px;
       padding: 10px 25px;
       border-radius: 8px;
@@ -74,31 +75,55 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       transition: all 0.3s;
+      text-shadow: 0 0 10px #f515a2;
     }
 
     button:hover {
-      background-color: #00ff9d;
-      color: #011a0c;
-      box-shadow: 0 0 20px #00ff9d, 0 0 40px #00ff9d;
+      background-color: #81eb31;
+      border-color: #81eb31;
+      color: #06000f;
+      box-shadow: 0 0 20px #00ff9d, 0 0 40px #ff00e6;
     }
 
     #message {
-      margin-top: 40px;
-      font-size: 18px;
-      color: #00ff9d;
-      width: 400px;
-      text-align: left;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.5s ease;
-      text-shadow: 0 0 8px #00ff9d;
-      white-space: pre-line;
-    }
+ 	margin-top: 40px;
+ 	font-size: 18px;
+  	color: #81eb31;
+  	width: 90%;
+	max-width: 1000px;           
+  	max-height: 50vh;    
+  	overflow-y: auto;     
+  	padding: 15px;    
+  	text-align: left;
+  	opacity: 0;
+  	transform: translateY(10px);
+  	transition: all 0.5s ease;
+ 	text-shadow: 0 0 8px #00ff9d, 0 0 15px #ff00e6;
+  	white-space: pre-line;
+  	line-height: 1.6;
+ 	letter-spacing: 0.5px;
+	scrollbar-width: thin;
+  	scrollbar-color: #f515a2 #06000f;
+}
 
-    #message.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+#message::-webkit-scrollbar {
+  width: 8px;
+}
+
+#message::-webkit-scrollbar-thumb {
+  background-color: #f515a2;
+  border-radius: 4px;
+}
+
+#message::-webkit-scrollbar-track {
+  background-color: #06000f;
+}
+
+#message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
     .scanlines {
       position: absolute;
@@ -108,8 +133,8 @@
       height: 100%;
       background: repeating-linear-gradient(
         to bottom,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.05) 1px,
+        rgba(255, 255, 255, 0.04),
+        rgba(255, 255, 255, 0.04) 1px,
         transparent 1px,
         transparent 3px
       );
@@ -127,8 +152,8 @@
     }
 
     @keyframes glowPulse {
-      from { text-shadow: 0 0 5px #00ff9d; }
-      to { text-shadow: 0 0 25px #00ff9d, 0 0 50px #00ff9d; }
+      from { text-shadow: 0 0 10px #00ff9d, 0 0 25px #ff00e6; }
+      to { text-shadow: 0 0 30px #00ff9d, 0 0 60px #ff00e6; }
     }
   </style>
 </head>
@@ -138,28 +163,140 @@
 
   <h1 class="glow-pulse">ACCESS TERMINAL</h1>
 
-  <input type="text" id="codeInput" placeholder="Enter access code...">
-  <button onclick="showMessage()">Decrypt</button>
+  <input type="text" id="codeInput" placeholder="Enter Access Code...">
+  <button onclick="showMessage()">Decipher</button>
 
   <div id="message"></div>
 
   <script>
+    const messages = {
+      "mdanlp015": `Dear Người dẫn lệnh Minh Đan,\n
+Đây là Trần Minh, người ăn nhờ ở đậu nhà Đan suốt mấy ngày diễn ra cuộc thi. Trước tiên thì cảm ơn và xin lỗi. Cảm ơn Minh Đan và chị đã cho tui ở nhờ mấy ngày qua, và cũng xin lỗi đã làm phiền hai người rất nhiều. \n
+Tui nghĩ tui tự tin mình là người hiểu định hướng của Đan nhất cả nhóm tại vì đêm nào Đan chở tui về cũng tâm sự hết. Băng qua cầu đêm, gió thổi vù vù lạnh ngắt, hai đứa ngồi vừa run cầm cập vừa nghiêng đầu nói chuyện, thích vãi.\n
+Theo tui cảm nhận được qua mấy ngày qua, có lẽ cả con tim và lý trí của Minh Đan không nằm ở REC. Vậy nên như tui nói đó, nếu không phù hợp thì cứ mạnh dạn buông bỏ thôi. Mà may sao cũng có cái giải mang về, cũng có nhiều thứ để ghi lại. Quá đủ đầy rồi phải hông?\n
+Thời gian qua làm việc cùng Minh Đan rất vui. Tui cũng cảm thấy mình làm việc khá là hợp rơ và thiệc sự muốn cùng nhau ngồi chỉnh slide chỉnh bảng lâu lâu hỏi mấy câu như vậy với Minh Đan nữa. Hy vọng rằng trong tương lai, biết đâu mình sẽ lại có cơ hội này. \n
+1 tuần là khoảng thời gian khá ngắn để quen và hiểu hết về một người, nhưng mà nó đủ dài với tui để Minh Đan và Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của tui. Tui sống hơi tình cảm nên cái này sến quá ha..\n
+Lời cuối cùng, cảm ơn vì đã đến RI25, đã là Looper, đã trở thành đồng đội của tui.\n
+Thân mến,\n
+Trần Minh.`,
+
+      "tadalp062": `Dear Người dẫn lệnh Anh Đào,\n
+Đây là Trần Minh, partner PR mà Đào tin tưởng quá mức vào. Thành thật mà nói, tui thật sự rất rất vui khi biết mình là một người đồng đội Đào có thể giao phó trách nhiệm và sự tin tưởng lên như vậy. \n
+Tui nghĩ là Đào cũng cảm thấy giống tui, thời gian qua làm việc cùng nhau thật sự tụi mình quá là ăn ý quá là hiệu suất rồi. Đôi khi tụi mình có vài tranh cãi không đáng có, phần nhiều là do cảm xúc của cả hai đều không ổn định. Tui vẫn chưa nói lời xin lỗi đàng hoàng với Đào, có lẽ vì cái tôi cao không cho phép tui hạ mình nói lời xin lỗi trực tiếp. Vậy nên bây giờ cho phép tui xin lỗi Đào nhiều, vì đã bác bỏ ý kiến của Đào một cách cảm tính, vì đã làm Đào buồn, vì đã là một con nhím dựng ngược chưa tìm được cách thu gai lại. \n
+Tui thích Đào, tui thích Tada cười nhiều, thích Tada tích cực. Mong Đào đừng để góp ý của mọi người làm mờ đi ánh sáng rực rỡ của Đào. Chỉ cần tiết chế một chút khi làm việc là được. Mong Đào ăn ngon, ngủ khoẻ, dù về sau làm gì cũng nhớ giữ gìn sức khoẻ thật tốt.\n
+Đến giờ tui vẫn thấy thiệc là kì diệu khi hai đứa mình đều là PR bị đá từ team C qua Looper, đều mặc cái quần đen sọc kẻ đó, và lại làm việc ăn ý với nhau như vậy. Tui nghĩ giữa hai đứa mình có một cái duyên thiệc bự. Và dù có phải RECer hay không, tui cũng mong duyên chúng mình đến đây là chưa kết thúc. (Nếu nó thật sự đứt, tui sẽ lấy băng keo đem đến CoFi gặp Đào rồi dán nó lại.)\n
+1 tuần là khoảng thời gian khá ngắn để quen và hiểu hết về một người, nhưng mà nó đủ dài với tui để Anh Đào và Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của tui. Tui sống hơi tình cảm nên tui viết sến quá ha..\n
+Lời cuối cùng, cảm ơn vì đã đến RI25, đã là Looper, đã trở thành đồng đội của tui.\n
+Thân mến,\n
+Trần Minh.`,
+
+      "bnhulp091": `Dear Người dẫn lệnh Bảo Như,\n
+Cảm ơn Như đã cho tui những lời góp ý thật thấm để tui soi lại chính mình. Tui cũng thật sự xin lỗi khi trong thời gian vừa qua có làm Như chưa vui ở một số chuyện công việc. Nhưng mà ngoài chuyện đó ra tui thấy tụi mình nói chuyện cũng oke, tui rất thích được deeptalk với Như đó. \n
+Tui muốn Như biết là 1 tuần vừa rồi tui thấy được nỗ lực to lớn của Như trong việc làm leader của Looper, cố gắng dẫn dắt cả team, cố gắng chu toàn cho mọi thứ. Dù có lẽ chưa hoàn hảo, nhưng mà tui vẫn thấy nỗ lực đó khiến cho Bảo Như toả sáng thật sáng. Hy vọng kinh nghiệm làm việc với Looper sẽ là một cái gì đó giúp Bảo Như ngày càng là một leader đáng tin cậy hơn, hoàn thiện hơn nữa, toả sáng rực rỡ hơn nữa.\n
+1 tuần là khoảng thời gian khá ngắn để quen và hiểu hết về một người, nhưng mà nó đủ dài với tui để Bảo Như và Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của tui. Tui sống hơi tình cảm nên tui viết sến quá ha..\n
+Biết đâu sau này trên đường đời, có duyên mình sẽ gặp lại nhau.\n
+Lời cuối cùng, cảm ơn vì đã đến RI25, đã là Looper, đã trở thành đồng đội của tui.\n
+Thân mến,\n
+Trần Minh.`,
+
+	"honglp011": `Dear Người dẫn lệnh Hồng Phúc,\n
+Tui thật sự rất biết ơn vì duyên đã dẫn tui vào Looper chung đội với Hồng, bởi vậy tui học được siêu siêu nhiều thứ hay ho. Qua quá trình làm việc vừa rồi, tui thấy Hồng rất giỏi. \n
+Hồng suy nghĩ rất mạch lạc, logic, idea cũng nhiều cái sáng tạo, kĩ năng phần mềm các thứ cũng đỉnh. Tui cảm giác Hồng lúc nào cũng biết rõ mình đang làm gì, chỉ là tui nghĩ ông nên thể hiện sự giỏi giang đó của mình ra nhiều hơn nữa. Tui không muốn một ngôi sao vốn rất tỏa sáng phải thu ánh sáng của nó lại không có ai nhìn thấy. \n
+Hy vọng nếu mình lại có duyên, tui sẽ lại thấy một ngôi sao Hồng tỏa sáng rực rỡ trên hành trình của mình tại REC.\n
+1 tuần là khoảng thời gian khá ngắn để quen và hiểu hết về một người, nhưng mà nó đủ dài với tui để Hồng Phúc và Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của tui. Tui sống hơi tình cảm nên tui viết sến quá ha..\n
+Biết đâu sau này trên đường đời, có duyên mình sẽ gặp lại nhau.\n
+Lời cuối cùng, cảm ơn vì đã đến RI25, đã là Looper, đã trở thành đồng đội của tui.\n
+Thân mến,\n
+Trần Minh.`,
+
+	"mchilp088": `Dear Người dẫn lệnh Mai Chi,\n
+Đã ai nói với Mai Chi là tên của Mai Chi nghe như một nụ cười chưa? Tui muốn Mai Chi biết tui nghiêm túc với câu này, và tui thật sự không có ý đùa giỡn gì cả. \n
+Tui cảm nhận được một nguồn năng lượng tỏa sáng của một ngôi sao toát ra từ Mai Chi. Và tui tin chắc rằng, với kĩ năng, kinh nghiệm, và sự đam mê Mai Chi dành cho ngành Truyền thông, tui nghĩ ngôi sao ấy sẽ còn rực rỡ hơn nữa. Tui cũng hy vọng Mai Chi sẽ cười nhiều hơn, tui thích nụ cười của Mai Chi lắm. \n
+1 tuần là khoảng thời gian khá ngắn để quen và hiểu hết về một người, nhưng mà nó đủ dài với tui để Mai Chi và Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của tui. Tui sống hơi tình cảm nên tui viết sến quá ha..\n
+Biết đâu sau này trên đường đời, có duyên mình sẽ gặp lại nhau.\n
+Lời cuối cùng, cảm ơn vì đã đến RI25, đã là Looper, đã trở thành đồng đội của tui.\n
+Thân mến,\n
+Trần Minh.`,
+
+	"mlnhlp079": `Dear Người dẫn lệnh Mỹ Linh,\n
+Mỹ Linh hay nói Mỹ Linh có cơ địa mặt "mệt" nên lúc nào nhìn Mỹ Linh cũng uể oải. Nhưng mà mỗi lần nói chuyện với nhau, nhìn vào mắt Mỹ Linh, tui thấy được cả sự quyết tâm, sự nghiêm túc với công việc bên trong đó. \n
+Mỹ Linh rất giỏi, sẽ chủ động nhận việc, sẽ chủ động học hỏi những thứ không biết. Tui cảm thấy quá trình "làm tới đâu học tới đó" của Mỹ Linh thật sự rất đáng nể. Vì vậy nên tui tin rằng Mỹ Linh sẽ phát triển tốt ở bất kì môi trường nào, và tui cũng hy vọng Mỹ Linh tin vào điều đó. \n
+1 tuần là khoảng thời gian khá ngắn để quen và hiểu hết về một người, nhưng mà nó đủ dài với tui để Mỹ Linh và Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của tui. Tui sống hơi tình cảm nên tui viết sến quá ha..\n
+Biết đâu sau này trên đường đời, có duyên mình sẽ gặp lại nhau.\n
+Lời cuối cùng, cảm ơn vì đã đến RI25, đã là Looper, đã trở thành đồng đội của tui.\n
+Thân mến,\n
+Trần Minh.`,
+
+	"khailp030": `Dear Người dẫn lệnh Duy Khải,\n
+Để mà nói thì tui cũng chưa quen được với Khải quá nhiều, vì mấy hôm đầu Khải thu mình lại quá tụi mình chưa có dịp nói chuyện. Nhưng về sau tiếp xúc nhiều hơn, tui mới biết Khải là một người vừa thú vị, vừa hài, vừa ham học hỏi tới vậy. \n
+Ban đầu tui tưởng Khải đã biết làm animation, may sao vào nhóm mình nên đóng góp luôn. Hóa ra là Khải chỉ mới vừa tải app về làm tới đâu học tới đó. Nghe xong mà tui sửng sốt luôn đó. May sao Khải về với Looper, góp phần tạo nên "ánh sao" của team mình ha. \n
+Tui thấy Khải đinh vãi, chỉ hy vọng về sau Khải sẽ học được cách tích cực thể hiện những điểm tốt của mình hơn nữa, để ánh sáng của ông không bị bất kì ai bỏ quên. Tui nghĩ là REC sẽ dạy cho ông cái này đó, ráng học hỏi nhen.\n
+1 tuần là khoảng thời gian khá ngắn để quen và hiểu hết về một người, nhưng mà nó đủ dài với tui để Duy Khải và Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của tui. Tui sống hơi tình cảm nên tui viết sến quá ha..\n
+Biết đâu sau này trên đường đời, có duyên mình sẽ gặp lại nhau.\n
+Lời cuối cùng, cảm ơn vì đã đến RI25, đã là Looper, đã trở thành đồng đội của tui.\n
+Thân mến,\n
+Trần Minh.`,
+
+	"mnnmlp112": `Dear Giám sát Mỹ Ngọc,\n
+Hành trình vừa qua của em tại REC Interlock 2025 là một hành trình vô cùng đáng nhớ, mà cũng không thể nào hoàn thiện nếu thiếu đi chị. \n
+Mặc dù không có cơ hội làm việc cùng nhau quá nhiều, nhưng chị để lại cho em ấn tượng rất sâu sắc về sự vui tính, nhiệt tình của chị với sấp nhỏ. Hỏi gì là chị đáp nấy, khó chỗ nào là chị chỉ chỗ đấy, không có sự góp sức của chị, chắc Looper cũng không thể đạt được thành tích của hiện tại.\n
+Dù chỉ có cơ hội quen biết nhau 1 tuần, em nghĩ thời gian qua đủ dài để chị Mỹ Ngọc và các anh chị RECers cũng như Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của em. Em sống hơi tình cảm nên viết hơi sến ạ..\n
+Em hy vọng sau này trên đường đời, biết đâu có duyên mình sẽ lại gặp nhau.\n
+Lời cuối cùng, cảm ơn chị đã là Giám sát có tâm nhất quả đất của Looper.\n
+Thân mến,\n
+Trần Minh.`,
+
+	"khnhlp126": `Dear Giám sát Bảo Khanh,\n
+Cảm ơn chị đã vi phạm quy định của Giám sát vì tụi em. Nếu không có chị, chắc PR framework rồi list nhà tài trợ của tụi em vẫn đang gặp một đống vấn đề. Cảm ơn chị vì miếng đồ ăn vặt đút tận mồm từng đứa trong đêm cuối cùng mình ở cạnh nhau. Cũng cảm ơn chị đã sẵn sàng cưu mang Looper đêm hôm đó. Thiếu đi sự "vi phạm" của chị, chắc hẳn Looper cũng không thể đạt được thành tích ở hiện tại.\n
+Dù chỉ có cơ hội quen biết nhau 1 tuần, em nghĩ thời gian qua đủ dài để chị Khanh Trương và các anh chị RECers cũng như Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của em. Em sống hơi tình cảm nên viết hơi sến ạ..\n
+Em hy vọng sau này trên đường đời, biết đâu có duyên mình sẽ lại gặp nhau.\n
+Lời cuối cùng, cảm ơn chị đã là Giám sát có tâm nhất quả đất của Looper.\n
+Thân mến,\n
+Trần Minh.`,
+	
+	"mcunlp177": `Dear Điều phối Minh Phát,\n
+Trong quá trình làm việc em chưa có nhiều cơ hội tiếp xúc với anh, em chỉ nghe nói anh rất nghiêm qua lời của các bạn Event. Nhưng gần đến những ngày cuối cùng, em cảm nhận được có lẽ anh đã mở lòng nhiều hơn với đám loi choi lóc chóc tụi em, và em rất biết ơn anh vì điều đó. \n
+Cảm ơn anh vì đã feedback slide của PR tụi em là "như bỏ chữ lên slide" để tụi em kịp sửa lại cho nó chuyên nghiệp. Cảm ơn vì lời động viên ở giây phút tụi em cần nhất, vì đối với tụi em, một khi được anh Phát công nhận thì coi như tụi em đã chiến thắng cuộc chơi này rồi. Cảm ơn anh vì sự tận tâm đến phút cuối cùng của anh đối với Looper, và vì cả danh sách quán ngon Nha Trang nữa. Nếu có dịp ra Nha Trang em sẽ đi ăn theo anh gợi ý ạ.\n
+Dù chỉ có cơ hội quen biết nhau 1 tuần, em nghĩ thời gian qua đủ dài để anh Phát và các anh chị RECers cũng như Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của em. Em sống hơi tình cảm nên viết hơi sến ạ..\n
+Em hy vọng sau này trên đường đời, biết đâu có duyên mình sẽ lại gặp nhau.\n
+Lời cuối cùng, cảm ơn anh đã là Điều phối có tâm nhất quả đất của Looper, và cảm ơn vì chiếc cúp trong lòng anh.\n
+Thân mến,\n
+Trần Minh.`,
+	
+	"bngclp219": `Dear Supporter Bảo Ngọc,\n
+Em nghĩ là chị đã nghe câu chuyện lý do em vào Looper cũng kha khá lần rồi. Nhưng em cũng mong chị đừng để bụng chuyện này, vì sau quá trình làm việc với chị, với Looper, em nghĩ rằng chị Bảo Ngọc là Supporter đỉnh nhất quả đất, và Looper là team peak nhất quả đất. \n
+Buổi đầu tiên chị ngồi cafe với Looper, ngồi ngay bên cạnh PR tụi em, em đã nghĩ rằng chị hơi đáng sợ. Vì chị có dáng vẻ của một người sẽ muốn mọi thứ được hoàn hảo chu toàn, giống như em, nên em sợ mình sẽ không hợp nhau khi làm việc. Thế nhưng sau đó, cách chị định hướng tụi em giải quyết vấn đề thay vì đi lòng vòng 2 tiếng, cách chị đưa ra feedback thật sự chi tiết và phù hợp cho mấy cái idea hay tactic cảm tính của tụi em, cách chị nhẹ nhàng "ơi" khi nghe tụi em gọi chị Ngọc cứ mỗi 5 phút một lần có lẽ sẽ khiến em nhớ hoài hoài về trải nghiệm được làm việc cùng chị. Cảm ơn chị vì tất cả những giây phút ấy.\n
+Về sau thì tụi em rất thích sự hiện diện của chị. Looper sẽ reo lên "Chị Ngọc tới kìa chị Ngọc tới kìa!!" như kiểu chim non thấy mẹ bay về tổ vậy hihi. Có chị ở bên cạnh khiến tụi em có một cảm giác vững chãi như thể nếu như không thành công cũng không sao, chị Ngọc sẽ hiểu mà. Vậy nên em cũng thật sự rất buồn khi không còn cơ hội làm việc với chị. \n
+Dù chỉ có cơ hội quen biết nhau 1 tuần, em nghĩ thời gian qua đủ dài để chị Bảo Ngọc và các anh chị RECers cũng như Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của em. Em sống hơi tình cảm nên viết hơi sến ạ..\n
+Em hy vọng sau này trên đường đời, biết đâu có duyên mình sẽ lại được làm việc cùng nhau.\n
+Lời cuối cùng, cảm ơn chị đã là Supporter vô cùng tuyệt vời của Looper, và cảm ơn duyên số đã đưa em đến team của chị.\n
+Thân mến,\n
+Trần Minh.`,
+
+	"neizlp285": `Dear Supporter Neizy,\n
+Em thật sự rất thích năng lượng của chị. Chị mang đến cho tụi em cảm giác như thể chỉ cần chị có mặt ở đó là chuyện gì rồi cũng sẽ ổn. Và tụi em rất trân trọng điều này. \n
+Cảm ơn chị vì những buổi thâu đêm suốt sáng, cảm ơn chị vì sự giúp đỡ tận tụy với mấy đứa em.\n
+Dù chỉ có cơ hội quen biết nhau 1 tuần, em nghĩ thời gian qua đủ dài để chị Neizy và các anh chị RECers cũng như Looper trở thành 1 "core memory" trong bộ nhớ hàng ngàn dữ liệu của em. Em sống hơi tình cảm nên viết hơi sến ạ..\n
+Vì không cùng ban, em rất tiếc vì thời gian qua chưa có cơ hội tiếp xúc nhiều hơn với chị. Em hy vọng sau này trên đường đời, có duyên mình sẽ gặp lại nhau.\n
+Lời cuối cùng, cảm ơn chị đã là Supporter vô cùng tuyệt vời của Looper, và cảm ơn duyên số đã đưa em đến team của chị.\n
+Thân mến,\n
+Trần Minh.`,
+
+	"looper": `Shine together, Bright forever.\n
+Cam on vi da den.`
+
+    };
+
     function showMessage() {
       const code = document.getElementById("codeInput").value.trim().toLowerCase();
       const messageDiv = document.getElementById("message");
 
-      const messages = {
-        "rose123": "🌿 ROSE PROTOCOL:\nSignal received.\nYour essence grows in every encrypted bloom.",
-        "star456": "💫 STAR PROTOCOL:\nTransmission stable.\nYour light continues to guide through data streams.",
-        "sun789": "☀️ SUN PROTOCOL:\nCore energy active.\nYou radiate stability in this digital void."
-      };
+      messageDiv.classList.add("show");
 
       if (messages[code]) {
         messageDiv.innerText = messages[code];
-        messageDiv.classList.add("show");
       } else {
         messageDiv.innerText = "⚠️ ACCESS DENIED.\nCODE INVALID.";
-        messageDiv.classList.add("show");
       }
     }
   </script>
